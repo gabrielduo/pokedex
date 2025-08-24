@@ -129,6 +129,181 @@
     font-size: .825rem;
 }
 
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    padding: clamp(16px, 4vw, 32px);
+    background: rgba(10, 14, 25, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    overflow: auto;
+    animation: modalFadeIn 180ms ease-out;   
+}
+@keyframes modalFadeIn { 
+    from {opacity:0} to {opacity:1} 
+}
+
+.modal.is-open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    --accent: #6c79db;        
+    --accent-weak: #eef1ff;   
+    position: relative;
+    /* margin: auto; */
+    width: min(720px, 100%);
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08), 0 3px 6px rgba(0,0,0,0.06);
+    color: #2a2a2a;
+    padding: clamp(20px, 3vw, 28px);
+    animation: modalSlideUp 220ms cubic-bezier(.2,.75,.25,1);
+}
+@keyframes modalSlideUp { from {transform:translateY(12px);opacity:0} to {transform:none;opacity:1} }
+
+.modal-hero {
+    background: linear-gradient(160deg, var(--accent-weak) 0%, #ffffff 65%);
+    border-radius: 14px;
+    padding: clamp(14px, 2.5vw, 18px);
+    margin: 6px 0 14px;
+    display: flex;
+    gap: clamp(12px, 2.5vw, 20px);
+    align-items: center;
+}
+
+.modal-hero img {
+    max-inline-size: min(240px, 42vw);
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 18px 22px rgba(0,0,0,0.15));
+    border-radius: 12px; 
+}
+
+/* .type-badges { display:flex; gap:8px; flex-wrap:wrap; margin:.35rem 0 .25rem; } */
+.type-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    font-size: .78rem; font-weight: 700; letter-spacing:.2px; text-transform: capitalize;
+    padding: 6px 10px; border-radius: 999px; color:#1f2937;
+    background: rgba(0,0,0,0.06);
+    border: 1px solid rgba(0,0,0,0.06);
+}
+
+.modal-content h2 { 
+    margin:0 0 .6rem; 
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem); 
+    font-weight: 800; 
+    color:#1f2937; 
+    text-transform:capitalize; 
+}
+
+.modal-content h3 { 
+    margin: 1rem 0 .6rem; 
+    font-size: 1rem; 
+    font-weight: 800; 
+    color:#1f2937; 
+}
+
+.modal-content p  { 
+    margin: .25rem 0; 
+    line-height: 1.5; 
+    color:#374151; 
+}
+
+.modal-content strong { 
+    color:#111827; 
+}
+
+.stats {
+  display: grid;
+  gap: 10px;
+}
+
+.stat-row {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 10px;
+    align-items: center;
+}
+
+.stat-name {
+    text-transform: lowercase;
+    letter-spacing: .2px;
+    color: #6b7280;
+}
+.stat-bar {
+    position: relative;
+    height: 10px;
+    background: #eef1f6;
+    border-radius: 999px;
+    overflow: hidden;
+}
+.stat-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent) 0%, color-mix(in srgb, var(--accent), #ffffff 30%) 100%);
+    border-radius: 999px;
+    transition: width 380ms ease;
+}
+.stat-val {
+    font-variant-numeric: tabular-nums;
+    color: #374151;
+}
+
+.close {
+    position: absolute; top: 10px; right: 10px;
+    inline-size: 38px; block-size: 38px;
+    border-radius: 999px; display:grid; place-items:center;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: rgba(0,0,0,0.02);
+    color:#6b7280; font-size:20px; font-weight:700;
+    cursor:pointer;
+    transition: transform 120ms ease, background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+.close:hover { 
+    transform: scale(1.06); 
+    background:#f3f4f6; 
+    color:#111827; 
+    box-shadow:0 4px 10px rgba(0,0,0,0.08); 
+}
+
+.type-badges {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: .5rem 0 .8rem; 
+}
+
+/* variáveis de cor que eu defini com auxílio de IA */
+.theme-grass   { --accent:#77c850; --accent-weak:#e6f6dc; }
+.theme-fire    { --accent:#ec7a2a; --accent-weak:#fde9da; }
+.theme-water   { --accent:#678fee; --accent-weak:#e6efff; }
+.theme-electric{ --accent:#f7cf2e; --accent-weak:#fff7d8; }
+.theme-ice     { --accent:#98d5d7; --accent-weak:#e7f8f9; }
+.theme-ground  { --accent:#dfbf69; --accent-weak:#faf1d9; }
+.theme-flying  { --accent:#a98ff0; --accent-weak:#efeaff; }
+.theme-poison  { --accent:#a040a0; --accent-weak:#f3e6f3; }
+.theme-fighting{ --accent:#bf3029; --accent-weak:#f8e2e1; }
+.theme-psychic { --accent:#f65687; --accent-weak:#ffe4ec; }
+.theme-dark    { --accent:#725847; --accent-weak:#eee9e6; }
+.theme-rock    { --accent:#b8a137; --accent-weak:#f7f0cd; }
+.theme-bug     { --accent:#a8b720; --accent-weak:#f0f6cf; }
+.theme-ghost   { --accent:#6e5896; --accent-weak:#ece7f6; }
+.theme-steel   { --accent:#b9b7cf; --accent-weak:#f1f1f7; }
+.theme-dragon  { --accent:#6f38f6; --accent-weak:#ece6ff; }
+.theme-fairy   { --accent:#f9aec7; --accent-weak:#ffeaf2; }
+
+@media (max-width: 420px){
+  .modal-content { padding:18px; border-radius:14px; }
+  .stat-row { grid-template-columns: 90px 1fr auto; }
+  .close { inline-size:34px; block-size:34px; font-size:18px; }
+}
+
 @media screen and (min-width: 380){
     .pokemons {
         grid-template-columns: 1fr 1fr;
